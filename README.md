@@ -11,7 +11,7 @@ Library created in .NET Standard to make menus in C# console in a very simple wa
 #### Preview:
 ![Preview Gif](https://i.ibb.co/8K6Vy8c/ek4f7.gif)
 
-#### Example:
+#### [Example](https://github.com/biitez/EasyMenu/blob/master/EasyMenu.Example/Program.cs):
 
 ```cs
 MenuConsole Menu = new MenuBuilder(BreadCrumbHeader: true, UserInputMessage: "Choose:", PageNavigationSeparator: "-")
@@ -47,3 +47,13 @@ void MyMethod()
     Console.WriteLine("Hi from MyMethod!");
 }
 ```
+
+### Contributions, reports or suggestions
+If you find a problem or have a suggestion inside this library, please let me know by [clicking here](https://github.com/biitez/EasyMenu/issues), if you want to improve the code, make it cleaner or more secure, create a [pull request](https://github.com/biitez/EasyMenu/pulls). 
+
+In case you will contribute in the code, please follow the same code base
+
+### Credits
+
+- `Telegram: https://t.me/biitez`
+- `Bitcoin Addy: bc1qzz4rghmt6zg0wl6shzaekd59af5znqhr3nxmms`
