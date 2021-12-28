@@ -97,7 +97,6 @@ public class MenuConsole
                         MenuList = _MenuLogs.Last();
                         _MenuLogs.RemoveAt(_MenuLogs.Count - 1);
                     }
-
                 }
 
                 continue;
@@ -139,7 +138,7 @@ public class MenuConsole
                 Console.WriteLine($"[{MenuIndex + 1}] {Menus[MenuIndex].Title}");
             }
 
-            Console.Write($"{_Builder.userInputMessage} ");
+            Console.Write($"{Environment.NewLine}{_Builder.userInputMessage} ");
 
             string UserInputString = Console.ReadLine();
 
