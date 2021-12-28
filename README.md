@@ -1,5 +1,7 @@
 ### EasyMenu 
+[![Nuget](https://img.shields.io/nuget/v/EasyMenu?style=flat-square)](https://www.nuget.org/packages/EasyMenu) [![GitHub Latest Release](https://img.shields.io/github/v/release/biitez/EasyMenu.svg?style=flat-square)](https://github.com/biitez/EasyMenu/releases)
 
+ 
 Library created in .NET Standard to make menus in C# console in a very simple way
 
 #### Features:
@@ -25,7 +27,7 @@ MenuConsole Menu = new MenuBuilder(BreadCrumbHeader: true, UserInputMessage: "Ch
     // o.. make subMenus
     .WithMenu("Menu with SubMenus", new[]
     {
-        // Dentro de los SubMenus puede hacer exactamente lo mismo que en .WithMenu
+        // Within the SubMenus you can do exactly the same as in .WithMenu
         new Menu("SubMenu A", () => { Console.WriteLine("Hi from SubMenu A!"); }),
 
         // Also you can create all the SubMenus you want within others
