@@ -1,5 +1,5 @@
 ### EasyMenu 
-![Nuget](https://img.shields.io/nuget/v/EasyMenu?style=flat-square) [![GitHub Latest Release](https://img.shields.io/github/v/release/biitez/EasyMenu.svg?style=flat-square)](https://github.com/biitez/EasyMenu/releases)
+[![Nuget](https://img.shields.io/nuget/v/EasyMenu?style=flat-square)](https://www.nuget.org/packages/EasyMenu) [![GitHub Latest Release](https://img.shields.io/github/v/release/biitez/EasyMenu.svg?style=flat-square)](https://github.com/biitez/EasyMenu/releases)
 
  
 Library created in .NET Standard to make menus in C# console in a very simple way
