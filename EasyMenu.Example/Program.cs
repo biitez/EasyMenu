@@ -23,10 +23,13 @@ namespace EasyMenu.Example
                         new Menu("other", () => { Console.WriteLine("adssda"); }),
                         new Menu("other", () => { Console.WriteLine("adssda"); }),
                     })
-                })
+                }, false)
+                .WithCustomErrorMessageInvalidInput("Invalid Input!")
                 .Build();
 
-            Menu.Show();
+            
+
+            Menu.Show(false);
 
             Console.ReadLine();
         }
