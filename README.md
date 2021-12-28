@@ -27,7 +27,7 @@ MenuConsole Menu = new MenuBuilder(BreadCrumbHeader: true, UserInputMessage: "Ch
     // o.. make subMenus
     .WithMenu("Menu with SubMenus", new[]
     {
-        // Dentro de los SubMenus puede hacer exactamente lo mismo que en .WithMenu
+        // Within the SubMenus you can do exactly the same as in .WithMenu
         new Menu("SubMenu A", () => { Console.WriteLine("Hi from SubMenu A!"); }),
 
         // Also you can create all the SubMenus you want within others
