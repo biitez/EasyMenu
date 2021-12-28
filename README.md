@@ -22,13 +22,13 @@ MenuConsole Menu = new MenuBuilder(BreadCrumbHeader: true, UserInputMessage: "Ch
         new Menu("SubMenu CA", () => { Console.WriteLine("Hello from SubMenu CA!"); }),
         new Menu("SubMenu CB", new[]
         {
-            // SubSubMenu
             new Menu("SubSubMenu CB-A", () => { Console.WriteLine("Hi from SubSubMenu!"); })
+            // (...)
         })
     })
     .Build();
 
-Menu.Show(); // show the Menu
+Menu.Show(); // Print the Menu
 
 /*
  * Output:
