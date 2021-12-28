@@ -21,7 +21,11 @@ namespace EasyMenu.Example
                     new Menu("adsasd", () => {System.Console.WriteLine("test"); }),
                     new Menu("Ll", new[]
                     {
-                        new Menu("other", () => { Console.WriteLine("adssda"); })
+                        new Menu("other", () => { Console.WriteLine("adssda"); }),
+                        new Menu("other", () => { Console.WriteLine("adssda"); }),
+                        new Menu("other", () => { Console.WriteLine("adssda"); }),
+                        new Menu("other", () => { Console.WriteLine("adssda"); }),
+                        new Menu("other", () => { Console.WriteLine("adssda"); }),
                     })
                 })
                 .Build();

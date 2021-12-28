@@ -9,7 +9,7 @@ public class MenuBuilder
 {
     internal readonly string MainTitle;
     internal readonly bool breadCrumbHeader;
-    internal List<Base> EasyMenus { get; } = null;
+    internal List<Menu> EasyMenus { get; } = null;
 
     public MenuBuilder(string Title = "Choose your option", bool BreadCrumbHeader = false)
     {

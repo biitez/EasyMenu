@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace EasyMenu.Models;
@@ -21,7 +22,6 @@ public class Menu : Base
     {
         ConsoleMenus = Menus;
     }
-
 
     public Menu(string MenuTitle, Action MenuSyncExecute) : this(MenuTitle)
     {

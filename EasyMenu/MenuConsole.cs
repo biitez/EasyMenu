@@ -11,6 +11,7 @@ public class MenuConsole
     private MenuBuilder _Builder { get; } = null;
     private List<string> _ErrorLogs { get; } = null;
     private List<string> _BreadCrumbHeader { get; } = null;
+    private List<List<Menu>> _MenuLogs { get; set; } = null;
 
     private string ErrorMessage { get; set; } = "Invalid input!";
 
@@ -19,6 +20,7 @@ public class MenuConsole
         _Builder = Builder;
         _ErrorLogs = new();
         _BreadCrumbHeader = new();
+        _MenuLogs = new();
     }
 
     public MenuConsole WithCustomErrorMessage(string UserInvalidInput = "Invalid input!")
@@ -42,7 +44,7 @@ public class MenuConsole
 
         _BreadCrumbHeader.Add("Main");
 
-        List<Base> MenuList = _Builder.EasyMenus;
+        List<Menu> MenuList = _Builder.EasyMenus;
 
         while (true)
         {
@@ -58,6 +60,8 @@ public class MenuConsole
 
             UserInputResult UserInput = GetUserInputMenu(MenuList);
 
+            Console.Clear();
+
             if (UserInput._UserInputError != null)
             {
                 Console.CursorVisible = false;
@@ -66,15 +70,41 @@ public class MenuConsole
                 continue;
             }
 
+            //if (UserInput._MenuSelected.Title.Equals("Return"))
+            //{
+            //    _MenuLogs.RemoveAt(_MenuLogs.Count - 1);
+
+            //    var lastBreadCrumb = _BreadCrumbHeader.Last();
+            //    _BreadCrumbHeader.Remove(lastBreadCrumb);
+            //}
+
+            if (_Builder.breadCrumbHeader)
+            {
+                Console.WriteLine($" {string.Join(" > ", _BreadCrumbHeader)}" + Environment.NewLine);
+            }
+
             if (UserInput._HaveSubMenus)
             {
+
                 Base MenuSelected = UserInput._MenuSelected;
+
                 MenuList.Clear();
 
                 foreach (var i in MenuSelected.ConsoleMenus)
                 {
                     MenuList.Add(i);
                 }
+
+                if (MenuSelected.ShowReturnOption)
+                {
+                    if (MenuSelected.Title.Equals("Return"))
+                    {
+                        MenuList = _MenuLogs.Last();
+                        _MenuLogs.RemoveAt(_MenuLogs.Count - 1);
+                    }
+
+                }
+
                 continue;
             }
             else
@@ -105,7 +135,7 @@ public class MenuConsole
         Console.ResetColor();
     }
 
-    private UserInputResult GetUserInputMenu(List<Base> Menus)
+    private UserInputResult GetUserInputMenu(List<Menu> Menus)
     {
         try
         {
@@ -130,7 +160,42 @@ public class MenuConsole
                 return new UserInputResult(UserInputErrorTypes.Invalid);
             }
 
-            return new UserInputResult(Menus[UserInput], Menus[UserInput].Title);
+            _MenuLogs.Add(Menus);
+
+            var CurrentMenu = Menus[UserInput];
+
+            if (!Menus[UserInput].Title.Equals("Return"))
+                _BreadCrumbHeader.Add(Menus[UserInput].Title);
+            else
+            {
+                _MenuLogs.RemoveAt(_MenuLogs.Count - 1);
+
+                var lastBreadCrumb = _BreadCrumbHeader.Last();
+                _BreadCrumbHeader.Remove(lastBreadCrumb);
+            }
+
+            //if (UserInput._MenuSelected.Title.Equals("Return"))
+            //{
+            //    _MenuLogs.RemoveAt(_MenuLogs.Count - 1);
+
+            //    var lastBreadCrumb = _BreadCrumbHeader.Last();
+            //    _BreadCrumbHeader.Remove(lastBreadCrumb);
+            //}
+
+            if (CurrentMenu.ConsoleMenus != null)
+            {
+                var ConsoleList = CurrentMenu.ConsoleMenus.ToList();
+
+                if (!ConsoleList.Any(c => c.Title.Equals("Return")) && _BreadCrumbHeader.Count != 1)
+                {
+                    ConsoleList.Add(new Menu("Return", Menus.ToArray()));
+                    CurrentMenu.ConsoleMenus = ConsoleList.ToArray();
+                }
+            }
+
+            //_BreadCrumbHeader.Add(Menus[UserInput].Title);
+
+            return new UserInputResult(CurrentMenu, Menus[UserInput].Title);
         }
         catch
         {
