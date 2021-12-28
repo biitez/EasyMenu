@@ -11,7 +11,7 @@ Library created in .NET Standard to make menus in C# console in a very simple wa
 - Configurable options
 
 #### Preview:
-![Preview Gif](https://i.ibb.co/8K6Vy8c/ek4f7.gif)
+![Preview Gif](https://i.imgur.com/HObfexj.gif)
 
 #### [Example](https://github.com/biitez/EasyMenu/blob/master/EasyMenu.Example/Program.cs):
 
