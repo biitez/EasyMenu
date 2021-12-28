@@ -55,32 +55,27 @@ public class MenuConsole
 
             if (_Builder.breadCrumbHeader)
             {
-                Console.WriteLine($" {string.Join(" > ", _BreadCrumbHeader)}" + Environment.NewLine);
+                Console.WriteLine($"{string.Join(", ", _BreadCrumbHeader)}" + Environment.NewLine);
             }
 
             UserInputResult UserInput = GetUserInputMenu(MenuList);
 
             Console.Clear();
 
-            if (UserInput._UserInputError != null)
+            if (UserInput._UserInputError is not null)
             {
                 Console.CursorVisible = false;
-                PrintLineConsoleColor($"{UserInput._UserInputError} input error. Enter to try again.", ConsoleColor.Red);                
+
+                PrintLineConsoleColor($"{UserInput._UserInputError} input error. Enter to try again.", ConsoleColor.Red);
+                
                 Console.ReadLine();
+
                 continue;
             }
 
-            //if (UserInput._MenuSelected.Title.Equals("Return"))
-            //{
-            //    _MenuLogs.RemoveAt(_MenuLogs.Count - 1);
-
-            //    var lastBreadCrumb = _BreadCrumbHeader.Last();
-            //    _BreadCrumbHeader.Remove(lastBreadCrumb);
-            //}
-
             if (_Builder.breadCrumbHeader)
             {
-                Console.WriteLine($" {string.Join(" > ", _BreadCrumbHeader)}" + Environment.NewLine);
+                Console.WriteLine($"{string.Join(" > ", _BreadCrumbHeader)}" + Environment.NewLine);
             }
 
             if (UserInput._HaveSubMenus)

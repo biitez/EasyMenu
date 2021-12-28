@@ -7,15 +7,13 @@ namespace EasyMenu;
 
 public class MenuBuilder
 {
-    internal readonly string MainTitle;
     internal readonly bool breadCrumbHeader;
     internal List<Menu> EasyMenus { get; } = null;
 
-    public MenuBuilder(string Title = "Choose your option", bool BreadCrumbHeader = false)
+    public MenuBuilder(bool BreadCrumbHeader = false)
     {
         EasyMenus = new();
 
-        MainTitle = Title;
         breadCrumbHeader = BreadCrumbHeader;
     }
 

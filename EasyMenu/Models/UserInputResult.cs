@@ -6,6 +6,7 @@ public class UserInputResult
     internal UserInputErrorTypes? _UserInputError { get; } = null;
     internal bool _HaveSubMenus { get; set; } = false;
     internal string _TitleSelected { get; set; }
+
     public UserInputResult(Base MenuSelected, string TitleSelected)
     {
         _MenuSelected = MenuSelected;
