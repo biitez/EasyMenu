@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace EasyMenu;
 
@@ -55,7 +54,7 @@ public class MenuConsole
 
             if (_Builder.breadCrumbHeader)
             {
-                Console.WriteLine($"{string.Join(", ", _BreadCrumbHeader)}" + Environment.NewLine);
+                Console.WriteLine($"{string.Join($"{_Builder.pageNavigationSeparator} ", _BreadCrumbHeader)}" + Environment.NewLine);
             }
 
             UserInputResult UserInput = GetUserInputMenu(MenuList);
@@ -75,7 +74,7 @@ public class MenuConsole
 
             if (_Builder.breadCrumbHeader)
             {
-                Console.WriteLine($"{string.Join(" > ", _BreadCrumbHeader)}" + Environment.NewLine);
+                Console.WriteLine($"{string.Join("{_Builder.pageNavigationSeparator} ", _BreadCrumbHeader)}" + Environment.NewLine);
             }
 
             if (UserInput._HaveSubMenus)
@@ -139,7 +138,7 @@ public class MenuConsole
                 Console.WriteLine($"[{MenuIndex + 1}] {Menus[MenuIndex].Title}");
             }
 
-            Console.Write("> ");
+            Console.Write($"{_Builder.userInputMessage} ");
 
             string UserInputString = Console.ReadLine();
 

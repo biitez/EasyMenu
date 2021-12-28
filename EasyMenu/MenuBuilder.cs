@@ -10,11 +10,16 @@ public class MenuBuilder
     internal readonly bool breadCrumbHeader;
     internal List<Menu> EasyMenus { get; } = null;
 
-    public MenuBuilder(bool BreadCrumbHeader = false)
+    internal readonly string userInputMessage;
+    internal readonly string pageNavigationSeparator;
+
+    public MenuBuilder(bool BreadCrumbHeader = false, string UserInputMessage = "Choose your option:", string PageNavigationSeparator = ",")
     {
         EasyMenus = new();
 
         breadCrumbHeader = BreadCrumbHeader;
+        userInputMessage = UserInputMessage;
+        pageNavigationSeparator = PageNavigationSeparator;
     }
 
     public MenuBuilder WithMenu(string MenuTitle, Func<Task> Execute)
