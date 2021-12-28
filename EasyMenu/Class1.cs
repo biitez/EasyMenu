@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace EasyMenu
-{
-    public class Class1
-    {
+namespace EasyMenu;
 
-    }
+public class Class1
+{
+
 }
