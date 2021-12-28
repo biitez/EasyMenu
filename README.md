@@ -1,46 +1,49 @@
-## EasyMenu
+### EasyMenu 
 
-Library created in .NET Standard to make interactive menus in the console in a very simple way
+Library created in .NET Standard to make menus in C# console in a very simple way
 
-### Preview:
+#### Features:
+- Menus with asynchronous/synchronous function
+- Possibility of making unlimited Sub-Menus
+- Return and navigation header
+- Configurable options
 
-### Usage:
+#### Preview:
+![Preview Gif](https://i.ibb.co/8K6Vy8c/ek4f7.gif)
+
+#### Example:
 
 ```cs
+MenuConsole Menu = new MenuBuilder(BreadCrumbHeader: true, UserInputMessage: "Choose:", PageNavigationSeparator: "-")
 
-MenuConsole Menu = new MenuBuilder(BreadCrumbHeader: true, UserInputMessage: "Choose:", PageNavigationSeparator: ">")
-    // create a menu with function synchronous
-    .WithMenu("Menu A", () => { Console.WriteLine("Example"); } )
-    
-    // create a menu with function Asynchronous
-    .WithMenu("Menu B", async () => { await Task.Delay(1); })
-    
-    // create a menu with SubMenus
-    .WithMenu("Menu C", new[]
+    // You can add lambda expressions
+    .WithMenu("Menu A", () => { Console.WriteLine("Hi from Menu A!"); } )
+
+    // or.. directly call an (a)synchronous method
+    .WithMenu("Menu MyMethod", MyMethod )
+
+    // o.. make subMenus
+    .WithMenu("Menu with SubMenus", new[]
     {
-        // Here you can create as many menus as you want for 'Menu C'
-        new Menu("SubMenu CA", () => { Console.WriteLine("Hello from SubMenu CA!"); }),
-        new Menu("SubMenu CB", new[]
+        // Dentro de los SubMenus puede hacer exactamente lo mismo que en .WithMenu
+        new Menu("SubMenu A", () => { Console.WriteLine("Hi from SubMenu A!"); }),
+
+        // Also you can create all the SubMenus you want within others
+        new Menu("SubMenu B", new[]
         {
-            new Menu("SubSubMenu CB-A", () => { Console.WriteLine("Hi from SubSubMenu!"); })
-            // (...)
+            new Menu("SubSubMenu BA", () => { Console.WriteLine("Hi from SubSubMenu BA!"); }),
+            new Menu("SubSubMenu BB", () => { Console.WriteLine("Hi from SubSubMenu BB!"); }),
         })
-    })
+    }, false)
+    // If the user does not enter a numerical option by calling one of the Menus, this error message will appear
+    .WithCustomErrorMessageInvalidInput("Invalid Input!")
     .Build();
 
-Menu.Show(); // Print the Menu
+// Display menu - UpdateConsole: Refresh the console after there is an error
+Menu.Show(UpdateConsole: true);
 
-/*
- * Output:
- *
- * Main
- * -----------
- * [1]. Menu A
- * [2]. Menu B
- * [3]. Menu C
- *
- * Choose: 
- */
-
+void MyMethod()
+{
+    Console.WriteLine("Hi from MyMethod!");
+}
 ```
-
