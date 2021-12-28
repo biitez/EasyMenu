@@ -58,8 +58,8 @@ public class MenuConsole
 
             if (_Builder.breadCrumbHeader)
             {
-                Console.WriteLine($"{string.Join($" {_Builder.pageNavigationSeparator} ", _BreadCrumbHeader)}");
-                Console.WriteLine("---");
+                Console.WriteLine($"{string.Join($" {_Builder.HeadNavigationSeparator} ", _BreadCrumbHeader)}");
+                Console.WriteLine($"{_Builder.HeadNavigationMenuSeparator}");
             }
 
             UserInputResult UserInput = GetUserInputMenu(MenuList);
@@ -68,7 +68,7 @@ public class MenuConsole
             {
                 Console.ForegroundColor = ConsoleColor.Red;
 
-                Console.WriteLine("{_Builder.ErrorUserInput} - Enter to try again.");
+                Console.WriteLine($"{_Builder.ErrorUserInput} - Enter to try again.");
 
                 Console.ResetColor();
                 
@@ -127,8 +127,8 @@ public class MenuConsole
 
             if (_Builder.breadCrumbHeader)
             {
-                Console.WriteLine($"{string.Join($" {_Builder.pageNavigationSeparator} ", _BreadCrumbHeader)}");
-                Console.WriteLine($"----");
+                Console.WriteLine($"{string.Join($" {_Builder.HeadNavigationSeparator} ", _BreadCrumbHeader)}");
+                Console.WriteLine($"{_Builder.HeadNavigationMenuSeparator}");
             }            
 
             if (IsSynchronous)
@@ -141,7 +141,7 @@ public class MenuConsole
                 UserInput._MenuSelected.MethodActionAsync.Invoke().GetAwaiter().GetResult();
             }
 
-            Console.ReadLine();
+            //Console.ReadLine();
             break;
             
         }
@@ -161,7 +161,7 @@ public class MenuConsole
             // Displays the menus of the list
             for (int MenuIndex = 0; MenuIndex < Menus.Count; MenuIndex++)
             {
-                Console.WriteLine($"[{MenuIndex + 1}] {Menus[MenuIndex].Title}");
+                Console.WriteLine($"{MenuIndex + 1}. {Menus[MenuIndex].Title}");
             }
 
             // Prompts the user to select one of the following
