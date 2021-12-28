@@ -43,7 +43,7 @@ MenuSettings.HeadNavigationSeparator = ">";
 
 // Page > Page2 > Page3
 // --- <- this
-// [1] (...)
+// 1. (...)
 MenuSettings.HeadNavigationMenuSeparator = "---";
 
 // The error message input
