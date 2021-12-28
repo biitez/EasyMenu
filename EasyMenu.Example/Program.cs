@@ -9,7 +9,7 @@ namespace EasyMenu.Example
     {
         static void Main()
         {
-            MenuConsole Menu = new MenuBuilder(BreadCrumbHeader: true, UserInputMessage: "Choose:", PageNavigationSeparator: " > ")
+            MenuConsole Menu = new MenuBuilder(BreadCrumbHeader: true, UserInputMessage: "Choose:", PageNavigationSeparator: ">")
                 .WithMenu("MenuTitle", () => { Console.WriteLine(""); } )
                 .WithMenu("MenuTitle2", async () => { await Task.Delay(1); })
                 .WithMenu("MenuTitle3", new[]
