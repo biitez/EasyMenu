@@ -54,7 +54,7 @@ public class MenuConsole
 
             if (_Builder.breadCrumbHeader)
             {
-                Console.WriteLine($"{string.Join($"{_Builder.pageNavigationSeparator} ", _BreadCrumbHeader)}" + Environment.NewLine);
+                Console.WriteLine($"{string.Join($"{_Builder.pageNavigationSeparator} ", _BreadCrumbHeader)}");
                 Console.WriteLine("---------");
             }
 
