@@ -1,17 +1,17 @@
 ### EasyMenu 
 [![Nuget](https://img.shields.io/nuget/v/EasyMenu?style=flat-square)](https://www.nuget.org/packages/EasyMenu) [![GitHub Latest Release](https://img.shields.io/github/v/release/biitez/EasyMenu.svg?style=flat-square)](https://github.com/biitez/EasyMenu/releases)
 
- 
-Library created in .NET Standard to make menus in C# console in a very simple way
+EasyMenu is a library created in .NET Standard to simplify developers to build a menu interface for a .NET console application.
 
 #### Features:
-- Menus with asynchronous/synchronous function
-- Possibility of making unlimited Sub-Menus
+- Asynchronous/synchronous function
+- Possibility of making unlimited Sub-Pages
 - Return and navigation header
 - Configurable options
+- It is extremely easy-to-use
 
 #### Preview:
-![Preview Gif](https://i.imgur.com/HObfexj.gif)
+![Preview Gif](https://share.biitez.dev/i/3v7oh.gif)
 
 #### [Example](https://github.com/biitez/EasyMenu/blob/master/EasyMenu.Example/Program.cs):
 
@@ -19,23 +19,23 @@ Library created in .NET Standard to make menus in C# console in a very simple wa
 MenuBuilder MenuSettings = new MenuBuilder(BreadCrumbHeader: true, UserInputMessage: "Choose:")
 
     // You can add lambda expressions
-    .WithMenu("Menu A", () => { Console.WriteLine("Hi from Menu A!"); })
+    .WithMenu("Page A", () => { Console.WriteLine("Hi from Page A!"); })
 
     // or.. directly call an (a)synchronous method
-    .WithMenu("Menu MyMethod", MyMethod)
+    .WithMenu("Page B", MyMethod)
 
-    // You can also make a menu with sub menus
-    .WithMenu("Menu with SubMenus", new[]
+    // or.. make a sub menus
+    .WithMenu("Page C", new[]
     {
         // Inside you can do exactly the same as in .WithMenu
-        new Menu("SubMenu A", () => { Console.WriteLine("Hi from SubMenu A!"); }),
+        new Menu("SubPage A", () => { Console.WriteLine("Hi from SubPage A!"); }),
 
         // Also you can create all the SubMenus you want within others
-        new Menu("SubMenu B with Sub sub menus", new[]
+        new Menu("SubPage B", new[]
         {
-            new Menu("SubSubMenu BA", () => { Console.WriteLine("Hi from SubSubMenu BA!"); }),
-            new Menu("SubSubMenu BB", () => { Console.WriteLine("Hi from SubSubMenu BB!"); }),
-            (...)
+            new Menu("SubPage BA", () => { Console.WriteLine("Hi from SubPage BA!"); }),
+            new Menu("SubPage BB", () => { Console.WriteLine("Hi from SubPage BB!"); }),
+            // (...)
         })
     });
 
