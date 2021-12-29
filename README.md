@@ -1,50 +1,65 @@
 ### EasyMenu 
 [![Nuget](https://img.shields.io/nuget/v/EasyMenu?style=flat-square)](https://www.nuget.org/packages/EasyMenu) [![GitHub Latest Release](https://img.shields.io/github/v/release/biitez/EasyMenu.svg?style=flat-square)](https://github.com/biitez/EasyMenu/releases)
 
- 
-Library created in .NET Standard to make menus in C# console in a very simple way
+EasyMenu is a library created in .NET Standard to simplify developers to build a menu interface for a .NET console application.
 
 #### Features:
-- Menus with asynchronous/synchronous function
-- Possibility of making unlimited Sub-Menus
+- Asynchronous/synchronous function
+- Possibility of making unlimited Sub-Pages
 - Return and navigation header
 - Configurable options
+- It is extremely easy-to-use
 
 #### Preview:
-![Preview Gif](https://i.ibb.co/8K6Vy8c/ek4f7.gif)
+![Preview Gif](https://share.biitez.dev/i/3v7oh.gif)
 
 #### [Example](https://github.com/biitez/EasyMenu/blob/master/EasyMenu.Example/Program.cs):
 
 ```cs
-MenuConsole Menu = new MenuBuilder(BreadCrumbHeader: true, UserInputMessage: "Choose:", PageNavigationSeparator: "-")
+// BreadCrumbHeader (boolean - default: false) = Enable/disable display of navigation between pages
+// UserInputMessage (string - default: "Choose your option") = The message that the user will be prompted to type the option
+
+MenuBuilder MenuSettings = new MenuBuilder(BreadCrumbHeader: true, UserInputMessage: "Choose:")
 
     // You can add lambda expressions
-    .WithMenu("Menu A", () => { Console.WriteLine("Hi from Menu A!"); } )
+    .WithMenu("Page A", () => { Console.WriteLine("Hi from Page A!"); })
 
     // or.. directly call an (a)synchronous method
-    .WithMenu("Menu MyMethod", MyMethod )
+    .WithMenu("Page B", MyMethod)
 
-    // o.. make subMenus
-    .WithMenu("Menu with SubMenus", new[]
+    // or.. make a sub menus
+    .WithMenu("Page C", new[]
     {
-        // Within the SubMenus you can do exactly the same as in .WithMenu
-        new Menu("SubMenu A", () => { Console.WriteLine("Hi from SubMenu A!"); }),
+        // Inside you can do exactly the same as in .WithMenu
+        new Menu("SubPage A", () => { Console.WriteLine("Hi from SubPage A!"); }),
 
-        // Also you can create all the SubMenus you want within others
-        new Menu("SubMenu B", new[]
+        // Also you can create all the SubOages you want within others
+        new Menu("SubPage B", new[]
         {
-            new Menu("SubSubMenu BA", () => { Console.WriteLine("Hi from SubSubMenu BA!"); }),
-            new Menu("SubSubMenu BB", () => { Console.WriteLine("Hi from SubSubMenu BB!"); }),
+            new Menu("SubPage BA", () => { Console.WriteLine("Hi from SubPage BA!"); }),
+            new Menu("SubPage BB", () => { Console.WriteLine("Hi from SubPage BB!"); }),
+            // (...)
         })
-    }, false)
-    // If the user does not enter a numerical option by calling one of the Menus, this error message will appear
-    .WithCustomErrorMessageInvalidInput("Invalid Input!")
-    .Build();
+    });
 
-// Display menu - UpdateConsole: Refresh the console after there is an error
-Menu.Show(UpdateConsole: true);
+// e.g. Page > Page2 > Page3
+MenuSettings.HeadNavigationSeparator = ">"; // Optional
 
-void MyMethod()
+// Page > Page2 > Page3
+// --- <- this
+// 1. (...)
+MenuSettings.HeadNavigationMenuSeparator = "---"; // Optional
+
+// The error message input
+MenuSettings.ErrorUserInput = "Invalid Input!"; // Optional
+
+// Build to MenuConsole
+MenuConsole consoleMenu = MenuSettings.Build();
+
+// Display menu - UpdateConsole (Optional): Refresh the console after there is an error
+consoleMenu.Show(UpdateConsole: true);
+
+static void MyMethod()
 {
     Console.WriteLine("Hi from MyMethod!");
 }
