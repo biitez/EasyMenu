@@ -10,43 +10,47 @@ namespace EasyMenu.Example
         {
             Console.Title = "https://github.com/biitez/EasyMenu";
 
+            // BreadCrumbHeader (boolean - default: false) = Enable/disable display of navigation between pages
+            // UserInputMessage (string - default: "Choose your option") = The message that the user will be prompted to type the option
+
             MenuBuilder MenuSettings = new MenuBuilder(BreadCrumbHeader: true, UserInputMessage: "Choose:")
 
                 // You can add lambda expressions
-                .WithMenu("Menu A", () => { Console.WriteLine("Hi from Menu A!"); })
+                .WithMenu("Page A", () => { Console.WriteLine("Hi from Page A!"); })
 
                 // or.. directly call an (a)synchronous method
-                .WithMenu("Menu MyMethod", MyMethod)
+                .WithMenu("Page B", MyMethod)
 
-                // o.. make subMenus
-                .WithMenu("Menu with SubMenus", new[]
+                // or.. make a sub menus
+                .WithMenu("Page C", new[]
                 {
-                    // Dentro de los SubMenus puede hacer exactamente lo mismo que en .WithMenu
-                    new Menu("SubMenu A", () => { Console.WriteLine("Hi from SubMenu A!"); }),
+                    // Inside you can do exactly the same as in .WithMenu
+                    new Menu("SubPage A", () => { Console.WriteLine("Hi from SubPage A!"); }),
 
                     // Also you can create all the SubMenus you want within others
-                    new Menu("SubMenu B with SubSubMenus", new[]
+                    new Menu("SubPage B", new[]
                     {
-                        new Menu("SubSubMenu BA", () => { Console.WriteLine("Hi from SubSubMenu BA!"); }),
-                        new Menu("SubSubMenu BB", () => { Console.WriteLine("Hi from SubSubMenu BB!"); }),
+                        new Menu("SubPage BA", () => { Console.WriteLine("Hi from SubPage BA!"); }),
+                        new Menu("SubPage BB", () => { Console.WriteLine("Hi from SubPage BB!"); }),
+                        // (...)
                     })
                 });
 
-            // e.g. Page > Page2 > Page3
-            MenuSettings.HeadNavigationSeparator = ">";
+            // Page > Page2 > Page3
+            MenuSettings.HeadNavigationSeparator = ">"; // Optional
 
             // Page > Page2 > Page3
             // --- <- this
             // [1] (...)
-            MenuSettings.HeadNavigationMenuSeparator = "---";
+            MenuSettings.HeadNavigationMenuSeparator = "---"; // Optional
 
             // The error message input
-            MenuSettings.ErrorUserInput = "Invalid Input!";
+            MenuSettings.ErrorUserInput = "Invalid Input!"; // Optional
 
             // Build to MenuConsole
             MenuConsole consoleMenu = MenuSettings.Build();
 
-            // Display menu - UpdateConsole: Refresh the console after there is an error
+            // Display menu - UpdateConsole (Optional): Refresh the console after there is an error
             consoleMenu.Show(UpdateConsole: true);
 
             Console.ReadLine();
