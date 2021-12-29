@@ -24,35 +24,36 @@ MenuBuilder MenuSettings = new MenuBuilder(BreadCrumbHeader: true, UserInputMess
     // or.. directly call an (a)synchronous method
     .WithMenu("Menu MyMethod", MyMethod)
 
-    // o.. make subMenus
+    // You can also make a menu with sub menus
     .WithMenu("Menu with SubMenus", new[]
     {
-        // Inside SubMenus you can do exactly the same as in .WithMenu
+        // Inside you can do exactly the same as in .WithMenu
         new Menu("SubMenu A", () => { Console.WriteLine("Hi from SubMenu A!"); }),
 
         // Also you can create all the SubMenus you want within others
-        new Menu("SubMenu B with SubSubMenus", new[]
+        new Menu("SubMenu B with Sub sub menus", new[]
         {
             new Menu("SubSubMenu BA", () => { Console.WriteLine("Hi from SubSubMenu BA!"); }),
             new Menu("SubSubMenu BB", () => { Console.WriteLine("Hi from SubSubMenu BB!"); }),
+            (...)
         })
     });
 
 // e.g. Page > Page2 > Page3
-MenuSettings.HeadNavigationSeparator = ">";
+MenuSettings.HeadNavigationSeparator = ">"; // Optional
 
 // Page > Page2 > Page3
 // --- <- this
 // 1. (...)
-MenuSettings.HeadNavigationMenuSeparator = "---";
+MenuSettings.HeadNavigationMenuSeparator = "---"; // Optional
 
 // The error message input
-MenuSettings.ErrorUserInput = "Invalid Input!";
+MenuSettings.ErrorUserInput = "Invalid Input!"; // Optional
 
 // Build to MenuConsole
 MenuConsole consoleMenu = MenuSettings.Build();
 
-// Display menu - UpdateConsole: Refresh the console after there is an error
+// Display menu - UpdateConsole (Optional): Refresh the console after there is an error
 consoleMenu.Show(UpdateConsole: true);
 
 static void MyMethod()
