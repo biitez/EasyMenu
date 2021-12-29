@@ -16,6 +16,9 @@ EasyMenu is a library created in .NET Standard to simplify developers to build a
 #### [Example](https://github.com/biitez/EasyMenu/blob/master/EasyMenu.Example/Program.cs):
 
 ```cs
+// BreadCrumbHeader (boolean - default: false) = Enable/disable display of navigation between pages
+// UserInputMessage (string - default: "Choose your option") = The message that the user will be prompted to type the option
+
 MenuBuilder MenuSettings = new MenuBuilder(BreadCrumbHeader: true, UserInputMessage: "Choose:")
 
     // You can add lambda expressions
@@ -30,7 +33,7 @@ MenuBuilder MenuSettings = new MenuBuilder(BreadCrumbHeader: true, UserInputMess
         // Inside you can do exactly the same as in .WithMenu
         new Menu("SubPage A", () => { Console.WriteLine("Hi from SubPage A!"); }),
 
-        // Also you can create all the SubMenus you want within others
+        // Also you can create all the SubOages you want within others
         new Menu("SubPage B", new[]
         {
             new Menu("SubPage BA", () => { Console.WriteLine("Hi from SubPage BA!"); }),
