@@ -27,13 +27,13 @@ MenuBuilder MenuSettings = new MenuBuilder(BreadCrumbHeader: true, UserInputMess
     // or.. directly call an (a)synchronous method
     .WithMenu("Page B", MyMethod)
 
-    // or.. make a sub menus
+    // or.. make a sub pages
     .WithMenu("Page C", new[]
     {
         // Inside you can do exactly the same as in .WithMenu
         new Menu("SubPage A", () => { Console.WriteLine("Hi from SubPage A!"); }),
 
-        // Also you can create all the SubOages you want within others
+        // Also you can create all the SubPages you want within others
         new Menu("SubPage B", new[]
         {
             new Menu("SubPage BA", () => { Console.WriteLine("Hi from SubPage BA!"); }),
