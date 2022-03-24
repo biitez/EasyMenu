@@ -1,7 +1,7 @@
 ### EasyMenu 
 [![Nuget](https://img.shields.io/nuget/v/EasyMenu?style=flat-square)](https://www.nuget.org/packages/EasyMenu) [![GitHub Latest Release](https://img.shields.io/github/v/release/biitez/EasyMenu.svg?style=flat-square)](https://github.com/biitez/EasyMenu/releases)
 
-EasyMenu is a library created in .NET Standard to simplify developers to build a menu interface for a .NET console application.
+Simple library built on .NET standard to create a console menu interface
 
 #### Features:
 - Asynchronous/synchronous function
