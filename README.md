@@ -19,6 +19,9 @@ Simple library built on .NET standard to create a console menu interface
 // BreadCrumbHeader (boolean - default: false) = Enable/disable display of navigation between pages
 // UserInputMessage (string - default: "Choose your option") = The message that the user will be prompted to type the option
 
+using EasyMenu;
+using EasyMenu.Models;
+    
 MenuBuilder MenuSettings = new MenuBuilder(BreadCrumbHeader: true, UserInputMessage: "Choose:")
 
     // You can add lambda expressions
